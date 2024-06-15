@@ -66,7 +66,7 @@ export class Register {
         type: 'submit',
         id: 'register-submit',
       },
-      'Register'
+      'Sign Up'
     );
     const gotoRegisterLink = createElement(
       'a',
@@ -121,7 +121,7 @@ export class Register {
     // Disable the submit button to avoid multiple submissions
     submitButton.disabled = true;
     if (confirmPassword !== password) {
-      useMessage('error', 'The two password entries are inconsistent');
+      useMessage('error', 'Passwords do not match');
       submitButton.disabled = false;
       return;
     }

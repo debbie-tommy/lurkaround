@@ -5,6 +5,8 @@ import request from '../request.js';
 import { getUserInfo } from '../apis/user.js';
 import { Header } from '../components/header.js';
 
+// Milestone 1 Registration & Login 
+// Milestone 2.1.1 Login 
 // Create the Login component constructor
 export class Login {
   constructor(options) {
@@ -119,7 +121,8 @@ export class Login {
         submitButton.disabled = false; // Enable the Submit button
       });
   }
-
+// Milestone 2.1.1 Post request 
+// POST -> /auth/login
   doLogin(email, password) {
     return new Promise((resolve, reject) => {
       request(

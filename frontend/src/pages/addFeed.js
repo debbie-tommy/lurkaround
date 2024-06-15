@@ -55,7 +55,7 @@ export class AddFeed {
     const startTimeLabel = createElement('label', {}, 'StartTime:');
 
     const startTimeInput = createElement('input', {
-      type: 'date',
+      type: 'datetime-local',
       id: 'addFeed-startTime',
       required: 'true',
     });

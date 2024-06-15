@@ -49,8 +49,11 @@ export const createTimeHandler = (time) => {
 
 export const dateHandler = (time) => {
   const timer = new Date(time);
-  return `${timer.getFullYear()}/${timer.getMonth() + 1}/${timer.getDate()} 
-  `;
+  return `${timer.getFullYear()}/${
+    timer.getMonth() + 1
+  }/${timer.getDate()} ${timer.getHours()}:${
+    timer.getMinutes() > 9 ? timer.getMinutes() : '0' + timer.getMinutes()
+  }`;
 };
 
 export const createEmpty = () => {

@@ -34,6 +34,18 @@ export class Header {
             this.removeProfileEntrance();
             pollingInstance.stopPolling();
             useGo('#login');
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+
+            // If either token or userId is missing, remove the Add feed link
+            if (!token || !userId) {
+              const addFeedLink = document.querySelector('a[href="#addFeed"]');
+              const loguot = document.querySelector('a[href="#login"]');
+              if (addFeedLink) {
+                addFeedLink.remove();
+                loguot.remove();
+              }
+            }
           }
         },
       },
@@ -104,3 +116,4 @@ export class Header {
     this.burger = burger; // Add this line to store the burger element
   }
 }
+// header

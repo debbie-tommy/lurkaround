@@ -1,5 +1,7 @@
 import request from "../request.js";
 
+// Milestone 2.3.4 GET request 
+
 // Get the feed list data from the server, and then use the callback function to process the fetched data.
 export const getFeedList = (start = 0, callback, hideLoading = true) => {
   return new Promise((resolve, reject) => {

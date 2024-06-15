@@ -17,7 +17,6 @@ export class Profile {
       const hashArr = hash.split('=');
       this.userId = hashArr[hashArr.length - 1];
       if (this.storageUserId === this.userId) {
-        // Determine if I'am entering my profile
         this.isSelf = true;
       } else {
         this.isSelf = false;
@@ -27,12 +26,10 @@ export class Profile {
       this.isSelf = true;
     }
     this.userData = null;
-
     this.rootElement = createElement('div', {
       class: 'profiles_container',
     });
     this.loadProfilesData();
-    //Whether I'm paying attention to this person
     this.isWatching = false;
     return this.rootElement;
   }
@@ -106,6 +103,17 @@ export class Profile {
       });
       headerRight.appendChild(updateIcon);
     }
+
+    const addWatchButton = createElement(
+      'button',
+      { class: 'add_watch_button' },
+      '+'
+    );
+    addWatchButton.addEventListener('click', () => {
+      this.openEmailPopup();
+    });
+    headerRight.appendChild(addWatchButton);
+
     this.watcherCount.addEventListener('click', () => {
       const watchersList = createElement('div', {
         class: 'watcher_List',
@@ -143,6 +151,47 @@ export class Profile {
     return profilesHeader;
   }
 
+  openEmailPopup() {
+    const emailInput = createElement('input', {
+      type: 'email',
+      placeholder: 'Enter email address',
+      class: 'email_input',
+    });
+    const submitButton = createElement(
+      'button',
+      { class: 'submit_button' },
+      'Submit'
+    );
+
+    submitButton.addEventListener('click', () => {
+      const email = emailInput.value;
+      if (email) {
+        this.addWatchEmail(email);
+        this.emailModal.close();
+      } else {
+        alert('Please enter a valid email address');
+      }
+    });
+
+    const popupContent = createElement('div', { class: 'popup_content' });
+    popupContent.appendChild(emailInput);
+    popupContent.appendChild(submitButton);
+
+    this.emailModal = new Modal(popupContent);
+    this.emailModal.open();
+  }
+
+  addWatchEmail(email) {
+    request('/user/watch', { email, turnon: true }, { method: 'PUT' })
+      .then((res) => {
+        alert('User added to watch list');
+      })
+      .catch((error) => {
+        console.error('Error adding watch email:', error);
+        alert('Failed to add user to watch list');
+      });
+  }
+
   createJobList(jobs) {
     const jobList = createElement('div', { class: 'job_list' });
     if (!!jobs.length) {
@@ -157,9 +206,8 @@ export class Profile {
 
     return jobList;
   }
-  createWatchedBtn() {
-    // console.log(this.isWatching);
 
+  createWatchedBtn() {
     const watchButton = createElement('img', {
       src: this.isWatching
         ? '../../assets/watching.svg'
@@ -176,7 +224,7 @@ export class Profile {
     request(
       '/user/watch',
       { email: this.userData.email, turnon: this.isWatching ? false : true },
-      { method: 'put' }
+      { method: 'PUT' }
     )
       .then((res) => {
         if (this.isWatching) {
@@ -203,6 +251,7 @@ export class Profile {
         throw new Error(error);
       });
   }
+
   getContainer() {
     return this.rootElement;
   }
