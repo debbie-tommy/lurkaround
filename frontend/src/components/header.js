@@ -1,9 +1,4 @@
-import {
-  createElement,
-  pollingInstance,
-  useLoading,
-  useMessage,
-} from '../utils.js';
+import { createElement, pollingInstance } from '../utils.js';
 import { useGo } from '../route.js';
 
 export class Header {
@@ -106,7 +101,7 @@ export class Header {
 
   createBurger() {
     const burger = createElement('div', { class: 'burger' });
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
       // Update this line to create 3 lines instead of 4
       const line = createElement('div', { class: 'line' });
       burger.appendChild(line);

@@ -1,7 +1,7 @@
 import { MessagePopup } from './components/messagePopup.js';
 import { Loading } from './components/loading.js';
 import { useGo } from './route.js';
-import { getFeedList } from './apis/feed.js';
+import { getFeedList } from './apis/api.js';
 
 export const useMessage = (type = 'info', msg) => {
   const popup = new MessagePopup({ type: type });
@@ -14,10 +14,6 @@ export const useLoading = (duration) => {
   return loading;
 };
 
-/*
-  description: create a element
-  how to use: createElement('div',{class:'xx'},'This is Allen')
-*/
 export const createElement = (tag, attributes = {}, text = '') => {
   const element = document.createElement(tag);
   for (let attr in attributes) {
@@ -114,7 +110,7 @@ class pollingGetFeedList {
 }
 export const pollingInstance = new pollingGetFeedList();
 
-// This is a throttling function called throttle.
+// throttling function.
 export const throttle = (fn, delay) => {
   let timer = null;
   return () => {

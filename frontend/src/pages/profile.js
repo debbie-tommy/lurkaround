@@ -1,9 +1,4 @@
-import {
-  createElement,
-  createEmpty,
-  createTimeHandler,
-  dateHandler,
-} from '../utils.js';
+import { createElement, createEmpty } from '../utils.js';
 import { useGo } from '../route.js';
 import request from '../request.js';
 import { Modal } from '../components/modal.js';
@@ -103,12 +98,16 @@ export class Profile {
       });
       headerRight.appendChild(updateIcon);
     }
-
+    const plusImg = document.createElement('img');
+    plusImg.src =
+      'https://img.icons8.com/?size=25&id=11255&format=png&color=293e2f';
+    plusImg.alt = 'plus';
     const addWatchButton = createElement(
       'button',
       { class: 'add_watch_button' },
-      '+'
+      ''
     );
+    addWatchButton.appendChild(plusImg);
     addWatchButton.addEventListener('click', () => {
       this.openEmailPopup();
     });

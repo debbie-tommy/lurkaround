@@ -3,12 +3,10 @@ import {
   createEmpty,
   pollingInstance,
   throttle,
-  useLoading,
-  useMessage,
-} from "../utils.js";
-import request from "../request.js";
-import { FeedCard } from "../components/feedCard.js";
-import { getFeedList } from "../apis/feed.js";
+} from '../utils.js';
+
+import { FeedCard } from '../components/feedCard.js';
+import { getFeedList } from '../apis/api.js';
 
 export class Home {
   constructor(options) {
@@ -18,9 +16,9 @@ export class Home {
     this.isLastPage = false;
     this.currentScrollTop = 0;
     this.touchBottom = false;
-    this.listWrap = createElement("div", { class: "list_wrap" });
-    this.rootElement = createElement("div", { id: "home" });
-    this.feedListStorage = localStorage.getItem("feedList");
+    this.listWrap = createElement('div', { class: 'list_wrap' });
+    this.rootElement = createElement('div', { id: 'home' });
+    this.feedListStorage = localStorage.getItem('feedList');
     this.feedsList = [];
     if (!navigator.onLine && this.feedListStorage) {
       this.feedsList = JSON.parse(this.feedListStorage);
@@ -40,7 +38,7 @@ export class Home {
     // }, 1000);
 
     window.addEventListener(
-      "scroll",
+      'scroll',
       throttle(this.handleScroll.bind(this), 100),
       true
     );
@@ -48,15 +46,15 @@ export class Home {
   }
   setFeedList() {
     try {
-      localStorage.setItem("feedList", JSON.stringify(this.feedsList));
+      localStorage.setItem('feedList', JSON.stringify(this.feedsList));
     } catch (error) {
       console.log(error);
     }
   }
   handleScroll() {
-    const st = document.querySelector("html")?.scrollTop;
-    const sh = document.querySelector("html")?.scrollHeight;
-    const ch = document.querySelector("html")?.clientHeight;
+    const st = document.querySelector('html')?.scrollTop;
+    const sh = document.querySelector('html')?.scrollHeight;
+    const ch = document.querySelector('html')?.clientHeight;
     if (st && sh && ch) {
       if (st > this.currentScrollTop) {
         //Determine whether to scroll down

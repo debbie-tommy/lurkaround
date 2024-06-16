@@ -1,4 +1,4 @@
-import { getUserInfo } from '../apis/user.js';
+import { getUserInfo } from '../apis/api.js';
 import { Header } from '../components/header.js';
 import request from '../request.js';
 import { useGo } from '../route.js';

@@ -11,9 +11,11 @@
 
 ## 0. Change Log
 
-N/A
+13/03/2023 - Updated the description of the '/job/feed' endpoint in Swagger docs from 'all jobs' -> 'next 5 jobs'.
 
-## 1. Background & Motivation
+## 1. Before you start
+
+### 1.1. Background & Motivation
 
 Web-based applications are becoming the most common way to build a digital capability accessible to a mass audience. While there are modern tools that help us build these rapidly, it's important to understand the fundamental JavaScript-based technology and architectures that exist, both to gain a deeper understanding for when these skills may be needed, but also to simply understand the mechanics of fundamental JS. Even when working with a high level framework like ReactJS, understanding (in-concept) the code that it is transpiled to will ensure you're a more well rounded web-based engineer.
 
@@ -22,6 +24,26 @@ This assignment consists of building a **frontend** website in Vanilla JS (no Re
 A theoretical background on how to interface with this API can be found the "promises & fetch" lecture.
 
 The web-based application you build is required to be a single page app (SPA). Single page apps give websites an "app-like feeling", and are characterised by their use of a single full load of an initial HTML page, and then using AJAX/fetch to dynamically manipulate the DOM without ever requiring a full page reload. In this way, SPAs are generated, rendered, and updated using JavaScript. Because SPAs don’t require a user to navigate away from a page to do anything, they retain a degree of user and application state. In short, this means you will only ever have `index.html` as your HTML page, and that any sense of "moving between pages" will just be modifications of the DOM.
+
+### 1.2. Lectures to watch
+
+You will _need_ to watch at least the following lectures before starting (it will help you get started):
+
+- Everything from assesssment 2
+- [CSS Frameworks](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/css-frameworks)
+
+You will _need_ to watch at least the following lectures to finish the assessment completely:
+
+- [Local storage](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/javascript-browser-localstorage)
+- [Events & Callbacks](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/javascript-async-callbacks)
+- [Promises](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/javascript-async-promises)
+- [AJAX Introduction](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/ajax-intro)
+- [Fetch](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/ajax-fetch)
+- [UI Fundamentals](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/ui-fundamentals)
+- [Perceivability](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/accessibility-perceivability)
+- [Operability](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/accessibility-operability)
+- [Understandability](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/accessibility-understandability)
+- [Robustness](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/accessibility-robustness)
 
 ## 2. The Task (Frontend)
 
@@ -51,7 +73,7 @@ This focuses on the basic user interface to register and log in to the site.
   - an email field (text)
   - a name field (text)
   - a password field (password)
-  - a confirm password field (password) - not passed to the backend, but an error should be thrown on submit if it doesn't match the other password
+  - a confirm password field (password) - not passed to the backend, but an error should be shown on submit if it doesn't match the other password
   - submit button to register
 - When the submit button is pressed, if the two passwords don't match the user should receive an error popup. If they do match, the form data should be sent to `POST /auth/register` to verify the credentials. If there is an error during registration an appropriate error should appear on the screen.
 
@@ -80,7 +102,7 @@ Each job should display:
 
 3. The job content itself. The job content includes the following:
 
-- An image to describe the job (jpg in base64 format)
+- An image to describe the job (jpg in base64 format) - can be any aspect ratio
 - A title for the new job (just as a string)
 - A starting date for the job (just as a string)
 - How many likes it has (or none)
@@ -122,8 +144,8 @@ Milestone 4 focuses predominately on user profiles and how users interact with t
 #### 2.4.1. Viewing others' profiles
 
 - Let a user click on a user's name from a job, like, or comment, and be taken to a profile screen for that user.
-- The profile screen should contain any information the backend provides for that particular user ID via (`GET /user`).
-- The profile should also display all jobs made by that person. You are not required to show likes and/or comments for each job here.
+- The profile screen should contain any information the backend provides for that particular user ID via (`GET /user`) (excludes the user ID).
+- The profile should also display all jobs made by that person. The jobs shown should also show likes, comments, and be able to have likes/comments interacted with just like the main feed.
 - The profile should also display somewhere all other users this profile is watched by (information via `GET /user`). This should consist of a list of names (which for each name links to another profile), as well as a count somewhere on the page that shows the total number of users they are watched by.
 
 #### 2.4.2. Viewing your own profile
@@ -148,7 +170,7 @@ Milestone 4 focuses predominately on user profiles and how users interact with t
 
 ### 2.5. Milestone 5 - Adding & updating content (9.3%)
 
-Milestone 5 focuses on addition and removing both content and comments.
+Milestone 5 focuses on interacting with content and comments.
 
 #### 2.5.1. Adding a job
 
@@ -167,7 +189,7 @@ Milestone 5 focuses on addition and removing both content and comments.
 
 #### 2.6.1. Infinite Scroll
 
-- Instead of pagination, users an infinitely scroll through results. For infinite scroll to be properly implemented you need to progressively load jobs as you scroll.
+- Instead of pagination, users an infinitely scroll through results on the feed. For infinite scroll to be properly implemented you need to progressively load jobs as you scroll.
 
 #### 2.6.2. Live Update
 
@@ -203,16 +225,6 @@ Users can access different pages using URL fragments:
 
 _No course assistance in lectures or on the forum will be provided for this component, you should do your own research as to how to implement this._
 
-#### 2.8. Bonus Marks (5%)
-
-An extra 5% of the assignment can be attained via bonus marks, meaning a maximum mark of 105/100. Any bonus marks that extend your ass2 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 75% of the course that is allocated for assignment marks
-
-Your bonus feature(s) can be anything. You just have to think of something that could make your web app stand out in some minor or major way. Simple examples would include just making sure that your user interface and user experience stands out amongst other students, maybe through some user testing.
-
-You could also add extra features, such as some additional frontend form validations - the possibilities are limitless.
-
-If you do implement a bonus feature, describe the feature and its details in `bonus.md` in the root directory of this repository.
-
 ## 3. Getting started
 
 ### 3.1. The Frontend
@@ -244,15 +256,15 @@ This will start up a second HTTP server where if you navigate to `http://localho
 
 You are prohibited from modifying the backend. No work needs to be done on the backend. It's provided to you simply to power your frontend.
 
-The backend server exists in your individual repository. After you clone this repo, you must run `yarn install` in `backend` directory once.
+The backend server exists in your individual repository. After you clone this repo, you must run `npm install` in `backend` directory once.
 
-To run the backend server, simply run `yarn start` in the `backend` directory. This will start the backend.
+To run the backend server, simply run `npm start` in the `backend` directory. This will start the backend.
 
 To view the API interface for the backend you can navigate to the base URL of the backend (e.g. `http://localhost:5005`). This will list all of the HTTP routes that you can interact with.
 
 We have provided you with a very basic starting database containing two users and one public channel with messages. You can look in `backend/database.json` to see the contents.
 
-Your backend is persistent in terms of data storage. That means the data will remain even after your express server process stops running. If you want to reset the data in the backend to the original starting state, you can run `yarn reset` in the backend directory. If you want to make a copy of the backend data (e.g. for a backup) then simply copy `database.json`. If you want to start with an empty database, you can run `yarn clear` in the backend directory.
+Your backend is persistent in terms of data storage. That means the data will remain even after your express server process stops running. If you want to reset the data in the backend to the original starting state, you can run `npm run reset` in the backend directory. If you want to make a copy of the backend data (e.g. for a backup) then simply copy `database.json`. If you want to start with an empty database, you can run `npm run clear` in the backend directory.
 
 Once the backend has started, you can view the API documentation by navigating to `http://localhost:[port]` in a web browser.
 
@@ -271,6 +283,52 @@ This is how we recommend you start the assignment:
 3.  Plan out your UI by thinking about all of the key screens and what information they rely on
 4.  Try to load up the backend and verify you've got it working by making a simple API call to `/feed` (which should return you an empty list)
 5.  Good luck!
+
+### 3.4. Making a fetch request
+
+Here is some helpful starter code to make a POST request (for non-authenticated routes). Note: there are many other ways (and some cleaner than this) to do this, so don't assume this is perfect code. It will just help you get started.
+
+```Javascript
+const apiCall = (path, body) => {
+    fetch('http://localhost:5005/' + path, {
+	  method: 'POST',
+	  headers: {
+        'Content-type': 'application/json',
+      },
+	  body: JSON.stringify(body)
+	})
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          resolve(data);
+        }
+      });
+};
+```
+
+Here is some helpful starter code to make a GET request (for authenticated routes). Note: there are many other ways (and some cleaner than this) to do this, so don't assume this is perfect code. It will just help you get started.
+
+```Javascript
+const apiCall = (path, token, queryString) => {
+    fetch('http://localhost:5005/' + path + '?' + queryString, {
+	  method: 'GET',
+	  headers: {
+        'Content-type': 'application/json',
+		'Authorization': `Bearer ${token}`
+      },
+	})
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          resolve(data);
+        }
+      });
+};
+```
 
 ## 4. Constraints & Assumptions
 
@@ -295,19 +353,21 @@ You should ensure that your programs have been tested on one of the following tw
 
 - The specification is intentionally vague to allow you to build frontend components however you think are visually appropriate. Their size, positioning, colour, layout, is in virtually all cases completely up to you. We require some basic criteria, but it's mainly dictating elements and behaviour.
 - This is not a design assignment. You are expected to show common sense and critical thinking when it comes to basic user experience and visual layout, but you are not required to be creative to achieve full marks.
-- Your web app must be a single page app. This means that there is only one initial browser load of content on one html page, and all subsequent dynamic changes to the page are based on Javascript DOM manipulation. If you do not build a single page app (e.g. using links to multiple HTML pages), you will receive a 50% penalty of your mark.
+- Your web app must be a single page app. This means that there is only one initial browser load of content on one html page, and all subsequent dynamic changes to the page are based on Javascript DOM manipulation, and not through any page refreshes. If you do not build a single page app (e.g. using links to multiple HTML pages), you will receive a 50% penalty of your mark.
 
-### 4.5. Static HTML, innerHTML, DOM manipulation
+### 4.5. Static HTML, DOM manipulation
 
 In this assignment, you are:
 
-- Allowed to add static HTML/CSS to the stub website provided (i.e. you can put raw HTML/CSS as if it's a static page, even if you then later manipulate it with JavaScript).
-- Allowed to build HTML elements and add CSS properties to the DOM via JavaScript. We expect this to be the most common way students build these pages.
-- Are strictly **not** allowed to use the `innerHTML` property of nodes/tags to set the inner HTML of an element. This has security vulnerabilities and is in general not best practice. Either statically add the HTML/CSS and manipulate it with JavaScript, or generate and build nodes/elements in JavaScript (just like in lectures/tutes/labs), or both. But don't set inner HTML. The use of any `innerHTML` will result in a 50% penalty of your mark.
+- Add static HTML/CSS to the stub website provided (i.e. you can put raw HTML/CSS as if it's a static page, even if you then later manipulate it with JavaScript).
+- Build HTML elements and add CSS properties to the DOM via JavaScript.
+- Use insertAdjacentHTML and innerText propertys/functions
 
-### 4.6. Async, Await, Promises
+### 4.6. Prohibited Usages
 
-You are strictly **not** allowed to use the `async` and `await` syntax in this assignment. You must use ES6 Promises. The use of any `async` or `await` will result in a 50% penalty of your mark.
+- You are not allowed to have more than 1 HTML file in your repo.
+- You are strictly **not** allowed to use the `async` and `await` syntax in this assignment. You must use Javascript Promises. The use of any `async` or `await` will result in a 50% penalty of your mark.
+- You are prohibited from using any string-to-DOM parser (e.g. DOMParser, or the innerHTML property, or anything similar). The use of any of this will result in a 50% penalty of your mark. You can read more about this [https://www.dhairyashah.dev/posts/why-innerhtml-is-a-bad-idea-and-how-to-avoid-it/](here).
 
 ## 5. Marking Criteria
 
@@ -346,6 +406,7 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
 		<td>
 			<ul>
 				<li>Your code is clean, well commented, with well-named variables, and is well laid out.</li>
+				<li>Your code is broken up and componentized into logical separated modules</li>
 			</ul>
 		</td>
 	</tr>
@@ -356,6 +417,7 @@ Please note: When we test your UI we will use a pre-loaded database JSON that al
 			<ul>
 				<li>Your application is usable and easy to navigate. No obvious usability issues or confusing layouts/flows.</li>
 				<li>Your application follows standard accessibility guidelines, such as use of alt tags, and colours that aren't inaccessible.</li>
+				<li>Describe any attempts you've made to improve the usability/accessibility in `usability.md`</li>
 			</ul>
 		</td>
 	</tr>
@@ -384,28 +446,20 @@ you.
 Every time you make commits or pushes on this repository, you are acknowledging that the work you
 submit is your own work (as described above).
 
-As per the course outline, "Pairs will be required to contribute regularly to gitlab and in reasonably equal contributions as we still assess contributions individually (there is no blanket group mark assigned). Failure to do so may result in a loss of marks."
-
-If you are not working in a pair, we still strongly encourage you to commit small amounts of code regularly. This will assist you in managing any allegations of plagiarism that you feel are not correct.
-
 Note you will not be penalized if your work has the potential to be taken without your consent or
 knowledge.
+
+**PLEASE NOTE: To ensure the originality of your work, we are requiring that you regularly commit your work to git throughout the weeks this assignment has been released. Regular and small commits (essentially at least once a day that you work on the assignment) are critical. Failures to commit regularly (or at minimum, failures to commit in small chunks) may results in either penalties of up to 20% of result in allegations of plagiarism.**
 
 ## 8. Submission
 
 This assignment is due _Monday 27th of March, 10am_.
 
-To submit your assignment, you must complete the following two steps in order:
+To submit your assignment, you must you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
 
-- Ensure you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
-
-This will submit the latest commit on master as your submission.
-
-You do NOT have to run a submit command for this assignment (we are experimenting with not using the command).
+We will collect the latest work on your master branch of gitlab at the time of submission.
 
 It is your responsibiltiy to ensure that your code can run successfully when cloned fresh from Gitlab.
-
-For pairs, only one team member needs to submit.
 
 ## 8. Late Submission Policy
 

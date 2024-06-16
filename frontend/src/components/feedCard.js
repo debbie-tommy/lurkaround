@@ -1,13 +1,7 @@
-import {
-  useMessage,
-  createElement,
-  createTimeHandler,
-  dateHandler,
-} from '../utils.js';
+import { createElement, dateHandler } from '../utils.js';
 import { useGo } from '../route.js';
 import { Modal } from './modal.js';
 import request from '../request.js';
-import { getFeedList } from '../apis/feed.js';
 
 // Create the Home component constructor
 export class FeedCard {

@@ -3,7 +3,6 @@ import { useLoading, useMessage } from './utils.js';
 import { BACKEND_PORT } from './config.js';
 
 let baseURL = 'http://localhost:' + BACKEND_PORT;
-// let baseURL = "https://lurkforwork-backend-8z6r.onrender.com";
 
 // Encapsulate the logic of sending HTTP requests
 export default function request(url, params, config) {

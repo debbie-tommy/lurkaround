@@ -1,5 +1,4 @@
-import { createElement, useLoading, useMessage } from '../utils.js';
-import { useGo } from '../route.js';
+import { createElement, useMessage } from '../utils.js';
 import request from '../request.js';
 
 // Create forms to add or update dynamics

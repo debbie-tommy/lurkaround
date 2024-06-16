@@ -1,4 +1,4 @@
-import { createElement, createTimeHandler, dateHandler } from '../utils.js';
+import { createElement, dateHandler } from '../utils.js';
 import { useGo } from '../route.js';
 import request from '../request.js';
 

@@ -1,7 +1,6 @@
 import { createElement, useMessage } from '../utils.js';
 import request from '../request.js';
 
-import { Login } from './login.js';
 import { useGo } from '../route.js';
 
 export class Register {
