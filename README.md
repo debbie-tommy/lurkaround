@@ -1,4 +1,5 @@
-# Assessment 3 - Vanilla JS: LurkForWork
+Vanilla JS: LurkForWork- A linkedIn Clone
+
 
 1. Background & Motivation
 2. The Task
@@ -25,14 +26,7 @@ A theoretical background on how to interface with this API can be found the "pro
 
 The web-based application you build is required to be a single page app (SPA). Single page apps give websites an "app-like feeling", and are characterised by their use of a single full load of an initial HTML page, and then using AJAX/fetch to dynamically manipulate the DOM without ever requiring a full page reload. In this way, SPAs are generated, rendered, and updated using JavaScript. Because SPAs don’t require a user to navigate away from a page to do anything, they retain a degree of user and application state. In short, this means you will only ever have `index.html` as your HTML page, and that any sense of "moving between pages" will just be modifications of the DOM.
 
-### 1.2. Lectures to watch
-
-You will _need_ to watch at least the following lectures before starting (it will help you get started):
-
-- Everything from assesssment 2
-- [CSS Frameworks](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/css-frameworks)
-
-You will _need_ to watch at least the following lectures to finish the assessment completely:
+## Resources
 
 - [Local storage](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/javascript-browser-localstorage)
 - [Events & Callbacks](https://cgi.cse.unsw.edu.au/~cs6080/23T1/content/lectures/javascript-async-callbacks)
